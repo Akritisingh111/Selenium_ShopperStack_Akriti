@@ -17,7 +17,9 @@ public class Verify_user_is_able_to_Add_Address_or_not_Test extends Base_Test {
 	
 	@Test
 	public void addAddress() throws EncryptedDocumentException, IOException 
-	{   test.log(Status.INFO, "Home Page is displayed");
+	{   
+         System.out.println("ExtentReports instance: " + report);
+		test.log(Status.INFO, "Home Page is displayed");
 		homePage.getAccountSettings().click();
 		homePage.getMyProfile().click();
 		test.log(Status.INFO, "MyProfile Page is displayed");
@@ -42,9 +44,9 @@ public class Verify_user_is_able_to_Add_Address_or_not_Test extends Base_Test {
 		addressForm.getStateDropDown().sendKeys(file.readPropertyData("state"));
 		addressForm.getCityDropDown().sendKeys(file.readPropertyData("city"));
 		
-//		webDriverUtility.selectByValue(addressForm.getCountryDropDown(), "country");
-//		webDriverUtility.selectByValue(addressForm.getStateDropDown(), "state");
-//		webDriverUtility.selectByValue(addressForm.getCityDropDown(), "city");
+//		webDriverUtility.selectByValue(addressForm.getCountryDropDown(), file.readPropertyData("country"));
+//		webDriverUtility.selectByValue(addressForm.getStateDropDown(), file.readPropertyData("state"));
+//		webDriverUtility.selectByValue(addressForm.getCityDropDown(), file.readPropertyData("city"));
 
 
 		addressForm.getPincodeTextField().sendKeys(file.readExcelData("Sheet1", 1, 4));

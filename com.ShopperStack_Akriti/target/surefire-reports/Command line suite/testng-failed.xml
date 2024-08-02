@@ -16,19 +16,6 @@
           <include name="afterClass"/>
         </methods>
       </class> <!-- com.ShopperStack_TestScripts.Verify_user_is_able_to_delete_address_or_not_Test -->
-      <class name="com.ShopperStack_TestScripts.Verify_user_is_able_to_Add_Address_or_not_Test">
-        <methods>
-          <include name="beforeClass"/>
-          <include name="beforeSuite"/>
-          <include name="addAddress"/>
-          <include name="afterSuite"/>
-          <include name="afterTest"/>
-          <include name="beforeMethod"/>
-          <include name="beforeTest"/>
-          <include name="afterMethod"/>
-          <include name="afterClass"/>
-        </methods>
-      </class> <!-- com.ShopperStack_TestScripts.Verify_user_is_able_to_Add_Address_or_not_Test -->
     </classes>
   </test> <!-- Command line test(failed) -->
 </suite> <!-- Failed suite [Command line suite] -->

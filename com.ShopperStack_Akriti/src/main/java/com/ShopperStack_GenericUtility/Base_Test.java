@@ -26,133 +26,115 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-
 public class Base_Test {
-	public	ExtentSparkReporter spark;
-	public	ExtentReports report;
+	public ExtentSparkReporter spark;
+	public ExtentReports report;
 	public ExtentTest test;
-	public	WebDriver driver;
-	public	static WebDriver sDriver;
-	public	File_Utility file = new File_Utility();
-	public	Welcome_Page welcomePage;
-	public	Login_Page loginPage;
-	public	Home_Page homePage;
-	public	WebDriverWait wait;
-	public WebDriver_Utility webDriverUtility;
-
-
-
-	@BeforeSuite
-	public void beforeSuite()
-	{
+	public WebDriver driver;
+	public static WebDriver sDriver;
+	public File_Utility file = new File_Utility();
+	public Welcome_Page welcomePage;
+	public Login_Page loginPage;
+	public Home_Page homePage;
+	public WebDriverWait wait;
+	public WebDriver_Utility webDriver_Utility = new WebDriver_Utility();
+    public Java_Utility java = new Java_Utility();
+	
+    
+    @BeforeSuite
+	public void beforeSuite() {
 		System.out.println("@BeforeSuite");
 	}
-	
+
 	@BeforeTest
-	public void beforeTest()
-	{
+	public void beforeTest() {
 		System.out.println("@BeforeTest");
-        spark = new ExtentSparkReporter(Framework_Constants.reportPath);
-        report = new ExtentReports();
-        report.attachReporter(spark);
-        test=report.createTest("Demo");
-
-
+		spark = new ExtentSparkReporter(Framework_Constants.reportPath + java.localDateTime() + ".html");
+		report = new ExtentReports();
+		report.attachReporter(spark);
+		test=report.createTest("Demo");
+		
+		
+//        System.out.println("ExtentReports initialized: " + report);
 	}
-	
+
 	@BeforeClass
-	public void beforeClass() throws IOException
-	{
+	public void beforeClass() throws IOException {
 		System.out.println("@BeforeClass");
-        
+
 		String browser = file.readPropertyData("browser");
 		String url = file.readPropertyData("url");
-		
+
 //		String browser=System.getProperty("browser");  --- using these commands we can enter values from command line
 //		String url = System.getProperty("url");
-		
-		if(browser.contains("chrome"))
-		{
+
+		if (browser.contains("chrome")) {
 			driver = new ChromeDriver();
-		}
-		else if(browser.contains("firefox"))
-		{
+		} else if (browser.contains("firefox")) {
 			driver = new FirefoxDriver();
-        }
-		else if(browser.contains("edge"))
-		{
+		} else if (browser.contains("edge")) {
 			driver = new EdgeDriver();
-		}
-		else
-		{
+		} else {
 			System.out.println("Enter a valid browser");
 		}
-		sDriver=driver;
+		sDriver = driver;
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
 		driver.get(url);
 		homePage = new Home_Page(driver);
 
-		
-
 	}
-	
+
 	@BeforeMethod
-	public void beforeMethod() throws IOException, InterruptedException
-	{
+	public void beforeMethod() throws IOException, InterruptedException {
 		System.out.println("@BeforeMethod");
-		//WelcomePage
+		// WelcomePage
 		welcomePage = new Welcome_Page(driver);
 		WebElement element = welcomePage.getLoginBtn();
 		wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 		Thread.sleep(3000);
 		element.click();
-		
-		//Login Page
+
+		// Login Page
 		loginPage = new Login_Page(driver);
 		loginPage.getEmail().sendKeys(file.readPropertyData("username"));
 		loginPage.getPassword().sendKeys(file.readPropertyData("password"));
 		loginPage.getLoginBtn().click();
-		
-		}
-	
-	@AfterMethod
-	public void afterMethod() throws InterruptedException
-	{
-		System.out.println("@AfterMethod");
-		//Home Page
-		
-//		Thread.sleep(5000);
-				homePage.getAccountSettings().click();
-				Thread.sleep(3000);
-				homePage.getLogout().click();
 
 	}
-	
+
+	@AfterMethod
+	public void afterMethod() throws InterruptedException {
+		System.out.println("@AfterMethod");
+		// Home Page
+
+//		Thread.sleep(5000);
+		homePage.getAccountSettings().click();
+		Thread.sleep(3000);
+		homePage.getLogout().click();
+
+	}
+
 	@AfterClass
-	public void afterClass() throws InterruptedException
-	{
+	public void afterClass() throws InterruptedException {
 		System.out.println("@AfterClass");
 		Thread.sleep(3000);
 		driver.quit();
 
 	}
-	
+
 	@AfterTest
-	public void afterTest()
-	{
+	public void afterTest() {
 		System.out.println("@AfterTest");
 		report.flush();
 
 	}
-	
+
 	@AfterSuite
-	public void afterSuite()
-	{
+	public void afterSuite() {
 		System.out.println("@AfterSuite");
 
 	}
-	
 
 }
