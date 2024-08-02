@@ -6,13 +6,13 @@
       <class name="com.ShopperStack_TestScripts.Verify_user_is_able_to_Add_Address_or_not_Test">
         <methods>
           <include name="beforeClass"/>
-          <include name="addAddress"/>
           <include name="beforeSuite"/>
+          <include name="addAddress"/>
           <include name="afterTest"/>
           <include name="afterSuite"/>
           <include name="beforeMethod"/>
-          <include name="afterMethod"/>
           <include name="beforeTest"/>
+          <include name="afterMethod"/>
           <include name="afterClass"/>
         </methods>
       </class> <!-- com.ShopperStack_TestScripts.Verify_user_is_able_to_Add_Address_or_not_Test -->

@@ -38,13 +38,13 @@ public class Verify_user_is_able_to_Add_Address_or_not_Test extends Base_Test {
 		addressForm.getStreetInfoTextField().sendKeys(file.readExcelData("Sheet1", 1, 2));
 		addressForm.getLandmarkTextField().sendKeys(file.readExcelData("Sheet1", 1, 3));
 		
-//		addressForm.getCountryDropDown().sendKeys(file.readPropertyData("country"));
-//		addressForm.getStateDropDown().sendKeys(file.readPropertyData("state"));
-//		addressForm.getCityDropDown().sendKeys(file.readPropertyData("city"));
+		addressForm.getCountryDropDown().sendKeys(file.readPropertyData("country"));
+		addressForm.getStateDropDown().sendKeys(file.readPropertyData("state"));
+		addressForm.getCityDropDown().sendKeys(file.readPropertyData("city"));
 		
-		webDriverUtility.selectByValue(addressForm.getCountryDropDown(), "country");
-		webDriverUtility.selectByValue(addressForm.getStateDropDown(), "state");
-		webDriverUtility.selectByValue(addressForm.getCityDropDown(), "city");
+//		webDriverUtility.selectByValue(addressForm.getCountryDropDown(), "country");
+//		webDriverUtility.selectByValue(addressForm.getStateDropDown(), "state");
+//		webDriverUtility.selectByValue(addressForm.getCityDropDown(), "city");
 
 
 		addressForm.getPincodeTextField().sendKeys(file.readExcelData("Sheet1", 1, 4));
