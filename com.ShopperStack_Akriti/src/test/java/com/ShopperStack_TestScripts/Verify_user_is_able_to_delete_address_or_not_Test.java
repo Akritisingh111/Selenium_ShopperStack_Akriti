@@ -13,7 +13,7 @@ public class Verify_user_is_able_to_delete_address_or_not_Test extends Base_Test
 
 	@Test
 	public void deleteAddress() throws InterruptedException
-	{   System.out.println("Running deleteAddress test...");
+	{   
 //        System.out.println("ExtentReports instance: " + report);
 //        test = report.createTest("Verify user is able to delete address or not"); 
 		

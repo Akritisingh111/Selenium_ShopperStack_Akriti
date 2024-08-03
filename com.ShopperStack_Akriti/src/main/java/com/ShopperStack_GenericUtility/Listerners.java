@@ -12,6 +12,9 @@ import org.testng.ITestResult;
 
 public class Listerners implements ITestListener , ISuiteListener{
 	Java_Utility java = new Java_Utility();
+	
+	
+	
 	public void onTestFailure(ITestResult result) {
     TakesScreenshot ts = (TakesScreenshot) Base_Test.sDriver;	
     File temp = ts.getScreenshotAs(OutputType.FILE);
